@@ -1,0 +1,13 @@
+{% load mptt_tags %}
+<ul class="root">
+    {% recursetree fond %}
+        <li>
+            {{ node.name }}
+            {% if not node.is_leaf_node %}
+                <ul class="children">
+                    <a href="{% url 'ceo' %}">{{ children }}</a>
+                </ul>
+            {% endif %}
+        </li>
+    {% endrecursetree %}
+</ul>

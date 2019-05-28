@@ -1,0 +1,6 @@
+*kapremontvenv
+*kapvenv
+*.idea
+*my_settings.py
+*__pycache__
+*media

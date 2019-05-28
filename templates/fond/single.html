@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <p>Одна статья</p>
+        {% if single.picture %}
+            <img src="{{ MEDIA_URL }}{{ single.picture.url }}" alt="">
+        {% endif %}
+        {{ single.title }}
+        {{ single.text }}
+        {{ single.date }}
+    </div>
+    <div>
+        <p>Другие новости</p>
+        {% for six in last_six %}
+            <p>{{ six.title }}</p>
+        {% endfor %}
+    </div>
+{% endblock %}

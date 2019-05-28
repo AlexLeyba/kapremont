@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <p>совпадений найдено: {{ founded.count }}</p>
+        {% for found in founded %}
+            {{ found.title }}
+        {% endfor %}
+    </div>
+{% endblock %}

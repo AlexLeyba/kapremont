@@ -1,0 +1,91 @@
+{%extends "base.html"%}
+{%block content%}
+<section class="banner">
+    <div class="slider">
+        <div class="slide1"><img src="../../static/imgs/slide1.jpg" alt=""></div>
+        <div class="slide2"><img src="../../static/imgs/slide2.jpg" alt=""></div>
+        <div class="slide3"><img src="../../static/imgs/slide3.jpg" alt=""></div>
+    </div>
+</section>
+<section class="action_blocks">
+    <div class="ablocks__blocks">
+        <div class="ablocks__blocks_item blue">
+            <img src="../../static/imgs/my_house.png" alt="">
+            <p>Мой дом в капремонте</p>
+        </div>
+        <div class="ablocks__blocks_item blue">
+            <img src="../../static/imgs/message.png" alt="">
+            <p>Оставить обращение</p>
+        </div>
+        <div class="ablocks__blocks_item blue">
+            <img src="../../static/imgs/online_pay.png" alt="">
+            <p>Оплатить онлайн</p>
+        </div>
+    </div>
+    <p class="action_blocks__info">«Фонд капитального ремонта общего имущества многоквартирных домов Липецкой области» – некоммерческая организация, которая является региональным оператором долгосрочной программы капитального ремонта общего имущества многоквартирных домов Липецкой области. Учредителем Фонда выступило Управление жилищно-коммунального хозяйства Липецкой области.</p>
+</section>
+<section class="info_block orange">
+    <div class="iblock__item">
+        <p class="ib__item_type">Млн. руб</p>
+        <p class="ib__item_count">4 <span>155,4</span></p>
+        <p class="ib__item_text">Всего собрано <br>средств</p>
+    </div>
+    <div class="iblock__item">
+        <p class="ib__item_type">Домов</p>
+        <p class="ib__item_count">1 <span>500</span></p>
+        <p class="ib__item_text">В программе <br>кап. ремонта</p>
+    </div>
+    <div class="iblock__item">
+        <p class="ib__item_type">Млн. руб</p>
+        <p class="ib__item_count">3 <span>440,4</span></p>
+        <p class="ib__item_text">Оплачено за кап. <br>ремонт</p>
+    </div>
+    <div class="iblock__item">
+        <p class="ib__item_type">Домов</p>
+        <p class="ib__item_count">1 <span>300</span></p>
+        <p class="ib__item_text">Отремонтировано<br> за все время</p>
+    </div>
+</section>
+<section class="news_block">
+    <p class="nblock__header">Последние новости</p>
+    <div class="nblock__content">
+        <div class="nblock__list_news">
+            {% for news in last_three %}
+            <div class="nblock__lnews_item">
+                <div class="nblock__lnews_item_header">
+                    <a href="{%url 'single' pk=news.id%}">
+                        <p class="nblock__lnews_item_header_text">{{ news.title }}</p>
+                    </a>
+                    <p class="nblock__lnews_item_header_date">{{ news.date }}</p>
+                </div>
+                <p class="nblock__lnews_item_text">{{ news.text|truncatewords:20 }}</p>
+            </div>
+            {% endfor %}
+            <a class="nblock__all_news blue" href="{%url 'news'%}">Смотреть все новости</a>
+        </div>
+        <div class="nblock__last_new">
+            {% if last.picture %}
+            <div class="nblock__last_new_text">
+                <p>{{ last.date }}</p>
+                <p class="nblock__last_new_text_title">{{ last.title }}</p>
+            </div>
+            <a href="{%url 'single' pk=last.id%}"><img src="{{ MEDIA_URL }}{{ last.picture.url }}" alt=""></a>
+            {% endif %}</div>
+    </div>
+</section>
+<section class="partners_block">
+    <p class="pblock__header">Наши партнеры</p>
+    <div class="pblock_content">
+        <div class="pblock__item"><img src="" alt=""></div>
+        <div class="pblock__item"><img src="" alt=""></div>
+        <div class="pblock__item"><img src="" alt=""></div>
+        <div class="pblock__item"><img src="" alt=""></div>
+        <div class="pblock__item"><img src="" alt=""></div>
+        <div class="pblock__item"><img src="" alt=""></div>
+        <div class="pblock__item"><img src="" alt=""></div>
+        <div class="pblock__item"><img src="" alt=""></div>
+        <div class="pblock__item"><img src="" alt=""></div>
+        <div class="pblock__item"><img src="" alt=""></div>
+    </div>
+</section>
+{%endblock%}

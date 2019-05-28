@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% for i in ceo %}
+        {% if i.photo %}
+            <p><img src="{{ MEDIA_URL }}{{ i.photo.url }}" alt=""></p>
+        {% endif %}
+        {{ i.name }}
+    {% endfor %}
+{% endblock %}
