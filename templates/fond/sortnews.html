@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section class="all_news two_column">
+        <div class="anews__news_list left_col">
+            {% for new in calendar %}
+                <input type="hidden" name="dt" value="{{ new.date }}">
+                <div class="anews__news_list_listitem">
+                    {% if new.picture %}
+                        <div class="anews__news_list_listitem_img">
+                            <img src="{{ MEDIA_URL }}{{ new.picture.url }}" alt="">
+                        </div>
+                    {% endif %}
+                    <div class="anews__news_list_listitem_text">
+                        <p class="anews__news_list_listitem_text_date">{{ new.date }}</p>
+                        <a href="{% url 'single' pk=new.id %}">
+                            <p class="anews__news_list_listitem_text_title">{{ new.name | safe }}</p>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div id="calendarHere" name="date" class="anews__calendar" style="position:relative;">
+        </div>
+        <form action="{% url 'sort' %}" method="POST" id="form">
+            {% csrf_token %}
+            <input type="hidden" name="calendar" id="calendar">
+        </form>
+    </section>
+{% endblock %}

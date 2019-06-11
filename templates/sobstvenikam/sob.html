@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load staticfiles menu %}
+{% block content %}
+    <section class="infoblock">
+        {% for sobs in sob %}
+           <p class="title"> {{ sobs.name }}</p>
+            {% if sobs.text %}
+                <div class="infoblock__text">{{ sobs.text|safe }}</div>
+            {% endif %}
+            {% for f in sobs.get_files %}
+                {% if f %}
+                    <div class="file_links"><img src="{% static 'imgs/ico_doc.svg' %}" alt="" ><a href="{{ f.file.url }}">{{ f.name }}</a></div>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+    </section>
+{% endblock %}

@@ -1,8 +1,10 @@
+from itertools import chain
 from django.shortcuts import render
 from fond.models import *
 from news.models import *
 from django.views.generic import View, ListView
 from django.db.models import Q
+from fond.models import ArticleManager
 
 
 class General(View):
@@ -33,12 +35,36 @@ class General(View):
             return render(request, 'fond/general.html', context)
 
 
-class AllNews(ListView):
+class SearchView(View):
+    """Поиск по всему сайту"""
+
+    def post(self, request, *args, **kwargs):
+        q = request.POST.get("q")
+        if q:
+            query_sets = []
+            query_sets.append(CeoFond.objects.search(query=q))
+            query_sets.append(News.objects.search(query=q))
+            try:
+                query_sets.append(Aim.objects.search(query=q))
+            except:
+                pass
+            final_set = list(chain(*query_sets))
+            final_set.sort(key=lambda x: x.name, reverse=True)
+            context = {
+                'found': query_sets
+            }
+        return render(request, 'fond/search.html', context)
+
+
+class AllNews(View):
     """Вывод всех новостей"""
 
-    model = News
-    template_name = 'fond/news.html'
-    queryset = News.objects.all()
+    def get(self, request):
+        news = News.objects.order_by('id')[::-1]
+        context = {
+            'news': news
+        }
+        return render(request, 'fond/news.html', context)
 
 
 class SingleNews(View):
@@ -55,11 +81,11 @@ class SingleNews(View):
         return render(request, 'fond/single.html', context)
 
 
-class SearchView(View):
-    """Поиск по сайту"""
-
-    def post(self, request, *args, **kwargs):
-        query = self.request.POST.get('q')
-        founded = News.objects.filter(Q(title__icontains=query) | Q(text__icontains=query))
-        context = {'founded': founded}
-        return render(request, 'fond/search.html', context)
+class SortNews(View):
+    def post(self, request):
+        form = request.POST.get('calendar')
+        calendar = News.objects.filter(date=form)
+        context = {
+            'calendar': calendar
+        }
+        return render(request, 'fond/sortnews.html', context)

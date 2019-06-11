@@ -1,18 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div>
-        <p>Одна статья</p>
+<section class="single_new two_column">
+    <div class="snew__main_info left_col">
         {% if single.picture %}
+        <div class="snew__main_info_img">
             <img src="{{ MEDIA_URL }}{{ single.picture.url }}" alt="">
+        </div>
         {% endif %}
-        {{ single.title }}
-        {{ single.text }}
-        {{ single.date }}
+        <p class="snew__main_info_title">{{ single.name }}</p>
+        <p class="snew__main_info_text">{{ single.text | safe }}</p>
     </div>
-    <div>
-        <p>Другие новости</p>
+    <div class="snew__other_news right_col">
+        <p class="snew__other_news_title">Другие новости</p>
         {% for six in last_six %}
-            <p>{{ six.title }}</p>
+        <a class="snew__other_news_item" href="{%url 'single' pk=six.id%}">
+            <p>{{ six.name }}</p>
+        </a>
         {% endfor %}
     </div>
+</section>
 {% endblock %}

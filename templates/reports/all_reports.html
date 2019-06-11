@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load staticfiles menu %}
+{% block content %}
+<section class="infoblock">
+    {% for names in name %}
+    <p class="title">{{ names.name }}</p>
+    {% endfor %}
+    
+    
+    <div class="tabs">{% for choice in choices %}
+        <a href="{{ choice.get_absolute_url }}">{{ choice.name }}</a>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

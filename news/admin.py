@@ -4,11 +4,11 @@ from mptt.admin import MPTTModelAdmin
 
 
 class InfoCoinAdmin(admin.ModelAdmin):
-    list_display = ('all_coin', 'all_home', 'paid', 'repaired',)
+    list_display = ('name', 'all_home', 'paid', 'repaired',)
 
 
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ('title', 'date',)
+    list_display = ('name', 'date',)
 
 
 class PartnersAdmin(admin.ModelAdmin):

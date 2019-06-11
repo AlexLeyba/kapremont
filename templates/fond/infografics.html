@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="aboutfond_infogr two_column">
+    <p class="title">Инфографика по вопросам <br>функционирования системы капремонта</p>
+    <div class="aboutfond_infogr__content">
+        {% for i in info %}
+        <div class="aboutfond_infogr__item">
+            <a href="{{ i.file.url }}" target="_blank">
+                <img src="{{ MEDIA_URL }}{{ i.image.url }}" alt="">
+            </a>
+            <p>{{ i.name }}</p>
+        </div>
+       {% endfor %}
+    </div>
+</section>
+
+{% endblock %}
+<!-- 
+<section class="aboutfond_infogr two_column">
+    <p class="title">Инфографика по вопросам <br>функционирования системы капремонта</p>
+    <div class="aboutfond_infogr__content">
+        <div class="aboutfond_infogr__item">
+            <a href="../static/imgs/2_-kontsessionnye-soglasheniya-v-zhkkh_-itogi-2016-goda.jpg" target="_blank">
+                <img src="../static/imgs/2_-kontsessionnye-soglasheniya-v-zhkkh_-itogi-2016-goda.jpg" alt="">
+            </a>
+            <p>Концессионные соглашения в ЖКХ</p>
+        </div>
+        <div class="aboutfond_infogr__item">
+            <a href="../static/imgs/5_-obem-finansirovaniya-ftsp-zhlishche-v-2016-godu.jpg" target="_blank">
+                <img src="../static/imgs/5_-obem-finansirovaniya-ftsp-zhlishche-v-2016-godu.jpg" alt="">
+            </a>
+            <p>Объем финансирования ФЦП "Жилище" в 2016 году, руб.</p>
+        </div>
+        <div class="aboutfond_infogr__item">
+            <a href="../static/imgs/o hode podg_k_otop_sezonu_2017-2018.jpg" target="_blank">
+                <img src="../static/imgs/o hode podg_k_otop_sezonu_2017-2018.jpg" alt="">
+            </a>
+            <p>О ходе подготовки регионов к отопительному сезону 2017-2018 гг</p>
+        </div>
+        <div class="aboutfond_infogr__item">
+            <a href="../static/imgs/8_-kak-prinyat-uchastie-v-proekte-formirovaniya-komfortnoy-gorodskoy-sredy_1.jpg" target="_blank">
+                <img src="../static/imgs/8_-kak-prinyat-uchastie-v-proekte-formirovaniya-komfortnoy-gorodskoy-sredy_1.jpg" alt="">
+            </a>
+            <p>Проект "Формирование комфортной городской среды"</p>
+        </div>
+    </div> -->
+</section>

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        {% for names in name %}
+            <p>{{ names.name }}</p>
+        {% endfor %}
+    </div>
+    <div>{% for choice in choices %}
+        <a href="{{ choice.get_absolute_url }}">{{ choice.choices }}</a><br>
+    {% endfor %}
+    </div>
+    <div>{% for vknadkas in vkladka %}
+        {% for f in vknadkas.get_files %}
+            {% if f %}
+                <a href="{{ f.file.url }}">{{ f.name }}</a>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    </div>
+{% endblock %}

@@ -1,9 +1,38 @@
 {% extends 'base.html' %}
 {% block content %}
+<section class="aboutfond_ceo two_column">
+    <p class="title">Руководство Фонда капитального ремонта</p>
     {% for i in ceo %}
-        {% if i.photo %}
-            <p><img src="{{ MEDIA_URL }}{{ i.photo.url }}" alt=""></p>
-        {% endif %}
-        {{ i.name }}
+    <div class="af_ceo__item">
+        <div class="af_ceo__item_img">
+            {% if i.photo %}
+            <img src="{{ MEDIA_URL }}{{ i.photo.url }}" alt="">
+            {% else %}
+            <img src="../static/imgs/rectangle.png" alt="">
+            {% endif %}
+        </div>
+        <div class="af_ceo__item_info">
+            <table class="af_ceo__item_info_table">
+                <tr>
+                    <td>ФИO</td>
+                    <td>{{ i.name }} </td>
+                </tr>
+                <tr>
+                    <td>Дата рождения</td>
+                    <td>{{ i.birthday }}</td>
+                </tr>
+                <tr>
+                    <td>Наименование должности</td>
+                    <td>{{ i.position }}</td>
+                </tr>
+                <tr>
+                    <td>Период работы в должности</td>
+                    <td>{{ i.work_period }}</td>
+                </tr>
+            </table>
+            <a href="/" class="af_ceo__item_info_all blue">Вся информация</a>
+        </div>
+    </div>
     {% endfor %}
+</section>
 {% endblock %}

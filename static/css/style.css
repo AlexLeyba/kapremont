@@ -1,5 +1,5 @@
 /* ---------DEFAULT----------- */
-*
+*:not(ul)
 {
     margin: 0;
     padding: 0;
@@ -8,14 +8,18 @@
 html,
 body
 {
-    min-height: 100vh;
+    width: 100%;
+    /* min-height: 100vh;*/
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 body
 {
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Ubuntu';
     font-size: 100%;
-    /*width: 100%;*/
+    /* */
 
     background-color: #fff;
 }
@@ -23,6 +27,8 @@ body
 img
 {
     max-width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 a
@@ -32,6 +38,11 @@ a
     color: inherit;
 }
 
+p
+{
+    /* line-height: 1.375rem;*/
+    letter-spacing: .03rem;
+}
 /* Remove outline on the forms and links */
 :active,
 :hover,
@@ -54,7 +65,7 @@ a
     flex: 1 0 auto;
 }
 
-.footer
+footer
 {
     flex: 0 0 auto;
 }
@@ -63,7 +74,7 @@ a
 /* Content size without fields*/
 .fields
 {
-    width: 1170px;
+    max-width: 1170px;
     margin: 0 auto;
 }
 
@@ -98,6 +109,52 @@ a
     border-color: #2eb9ce #2eb9ce #ff610a #2eb9ce;
 }
 
+.title
+{
+    font-size: 1.5rem;
+    font-weight: normal;
+    font-weight: 600;
+    line-height: 1.75rem;
+
+    margin-bottom: 1.625rem;
+
+    letter-spacing: .03rem;
+}
+
+.two_column
+{
+    display: flex;
+
+    margin-top: 3.125rem;
+    margin-bottom: 3.125rem;
+
+    justify-content: space-between;
+}
+
+.left_col
+{
+    width: 60%;
+}
+
+.right_col
+{
+    width: 30%;
+}
+
+table
+{
+    width: 100%; /* Ширина таблицы */
+
+    border-spacing: 0; /* Расстояние между ячеек */
+    border-collapse: collapse; /* Убираем двойные линии */
+}
+td
+{
+    padding: 1rem; /* Поля в ячейках */
+
+    border: 1px solid #e4e4e4; /* Параметры границ */
+}
+
 
 /*COLORS*/
 .blue
@@ -113,6 +170,11 @@ a
 .orange
 {
     background: #ff9f48;
+}
+
+.white
+{
+    background: #fff;
 }
 
 .grey
@@ -135,7 +197,211 @@ a
     color: #808080;
 }
 
-/* ---------BLOCK STYLES----------- */
+/* MENU */
+
+/*GAMBURGER*/
+.menu__icon
+{
+    position: relative;
+
+    display: none;
+
+    width: 45px;
+    height: 35px;
+
+    cursor: pointer;
+}
+
+.menu__icon span
+{
+    position: absolute;
+    left: 0;
+
+    display: block;
+
+    width: 100%;
+    height: 7px;
+
+    transition: .25s ease-in-out;
+    transform: rotate(0deg);
+
+    opacity: 1;
+    border-radius: 9px;
+    background: #ff610a;
+}
+
+.menu__icon span:nth-child(1)
+{
+    top: 0;
+}
+
+.menu__icon span:nth-child(2),
+.menu__icon span:nth-child(3)
+{
+    top: 13px;
+}
+
+.menu__icon span:nth-child(4)
+{
+    top: 26px;
+}
+
+/*OPEN MENU*/
+.menu.menu_state_open .menu__icon span:nth-child(1)
+{
+    top: 18px;
+    left: 50%;
+
+    width: 0;
+}
+
+.menu.menu_state_open .menu__icon span:nth-child(2)
+{
+    transform: rotate(45deg);
+}
+
+.menu.menu_state_open .menu__icon span:nth-child(3)
+{
+    transform: rotate(-45deg);
+}
+
+.menu.menu_state_open .menu__icon span:nth-child(4)
+{
+    top: 18px;
+    left: 50%;
+
+    width: 0;
+}
+
+
+/* задаем цвет фона для контейнера nav. */
+.nav
+{
+    z-index: 999999999999;
+}
+/* убираем отступы и поля, а также list-style для "ul", 
+             * и добавляем "position:relative" */
+.nav ul
+{
+    position: relative;
+    z-index: 999999999999;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+/* применяем inline-block позиционирование к элементам навигации */
+
+/* стилизуем ссылки */
+.nav a
+{
+    z-index: 999999999999;
+    /*font-size: 20px;
+    line-height: 60px;*/
+
+    display: block;
+    /*    padding: 0 10px;*/
+
+    text-decoration: none;
+
+    color: #808080;
+}
+
+/*.subitem a*/
+.nav > ul > li > ul a
+{
+    z-index: 999999999999;
+
+    padding: 10px 10px;
+
+    background: #f2f2f2;
+}
+
+/* изменяем цвет фона при наведении курсора */
+.nav a:hover
+{
+    color: #000;
+}
+
+/* скрываем выпадающие списки по умолчанию
+             * и задаем абсолютное позиционирование */
+.nav ul ul
+{
+    position: absolute;
+    z-index: 999999999999;
+    top: 100%;
+
+    display: none;
+}
+
+/* отображаем выпадающий список при наведении */
+.nav ul li:hover > ul
+{
+    display: inherit;
+}
+
+/* первый уровень выпадающего списка */
+.nav ul ul li
+{
+    position: relative;
+    z-index: 999999999999;
+
+    display: list-item;
+    float: none;
+    /*min-width: 170px;*/
+
+    width: 200px;
+}
+/* второй, третий и последующие уровни 
+             * смещаем 2 и 3 уровни влево 
+             * на значение длины первого уровня.
+            */
+.nav ul ul ul
+{
+    position: absolute;
+    z-index: 999999999999999999;
+    top: -1rem;
+    left: 73.9%;
+}
+.nav ul ul ul li
+{
+    border-width: 0 0 0 5px;
+    border-style: solid solid solid outset;
+    border-color: #2eb9ce #2eb9ce #2eb9ce #ff610a;
+}
+
+.nav ul ul ul li:first-child
+{
+    margin-top: 1.8rem;
+}
+
+.nav > ul > li > ul > li:first-child
+{
+    /* top:1rem;*/
+    margin-top: .8rem;
+}
+.subitem li > a:after
+{
+    /*content: '        >';
+    text-align: right;*/
+}
+.subitem li > a:only-child:after
+{
+    /*content: '';*/
+}
+
+.fa-angle-right
+{
+    top: 50%;
+
+    float: right;
+
+    /*margin-top: -.625rem;*/
+}
+
+/* ---------MAIN PAGE BLOCK STYLES----------- */
 /*HEADER*/
 header
 {
@@ -164,7 +430,9 @@ header
 {
     width: 12.1%;
 
-    background-image: url(../imgs/logo.png);
+    cursor: pointer;
+
+    background-image: url(../imgs/logo.svg);
     background-repeat: no-repeat;
     background-position-y: bottom;
     background-size: contain;
@@ -180,7 +448,11 @@ header
 
     justify-content: space-around;
     flex-wrap: wrap;
-    ;
+}
+
+.header__main_mobile
+{
+    display: none;
 }
 
 .header__main_address
@@ -295,10 +567,17 @@ header
 
     width: 8.5%;
 
+    cursor: pointer;
+
     color: #fff;
 
     align-items: center;
     align-content: center;
+}
+
+.header__profile:hover
+{
+    background: #2298d0;
 }
 
 .header__profile img
@@ -320,19 +599,25 @@ header
 
 .slide1
 {
-    background-image: url(../imgs/slide1.jpg);
+    height: 340px;
+
+    background-image: url(../imgs/1б.svg);
     background-size: cover;
 }
 
 .slide2
 {
-    background-image: url(../imgs/slide2.jpg);
+    height: 340px;
+
+    background-image: url(../imgs/2б.svg);
     background-size: cover;
 }
 
 .slide3
 {
-    background-image: url(../imgs/slide3.jpg);
+    height: 340px;
+
+    background-image: url(../imgs/3б.svg);
     background-size: cover;
 }
 
@@ -342,7 +627,7 @@ header
     display: flex;
 
     width: 100%;
-    margin-top: 6.75rem;
+    margin-top: 2.125rem;
 
     justify-content: space-between;
     align-items: center;
@@ -371,6 +656,11 @@ header
     align-items: center;
     align-content: center;
 }
+.ablocks__blocks_item_img
+{
+    height: 40%;
+    margin: 1.5rem 0 .8rem 0;
+}
 
 .ablocks__blocks_item:hover
 {
@@ -379,8 +669,8 @@ header
 
 .ablocks__blocks_item img
 {
-    height: 40%;
-    margin: 1.5rem 0 .8rem 0;
+    height: 100%;
+    /*margin: 1.5rem 0 .8rem 0;*/
 }
 
 .ablocks__blocks_item p
@@ -390,6 +680,9 @@ header
 
 .action_blocks__info
 {
+    font-size: .875rem;
+    line-height: 1.375rem;
+
     width: 48%;
 }
 
@@ -399,10 +692,10 @@ header
     display: flex;
 
     height: 11.75rem;
-    margin-top: 6.625rem;
-    padding: 2rem 5.4rem;
+    margin-top: 2.125rem;
+    padding: 1rem 5.4rem;
 
-    color: #fff;
+    color: #ff9f48;
 
     justify-content: space-between;
 }
@@ -411,8 +704,7 @@ header
 {
     display: flex;
     flex-direction: column;
-
-    width: 12rem;
+    /*width: 12rem;*/
 
     justify-content: space-evenly;
 }
@@ -432,7 +724,7 @@ header
     font-weight: bold;
     line-height: 1.625rem;
 
-    text-align: right;
+    text-align: left;
     letter-spacing: .06rem;
 }
 
@@ -454,26 +746,18 @@ header
 /*SECTION NEWS BLOCKS*/
 .news_block
 {
-    margin-top: 6.625rem;
+    margin-top: 2.125rem;
 }
 
-.nblock__header
-{
-    font-size: 1.5rem;
-    font-weight: normal;
-    font-weight: 600;
-    line-height: 1.375rem;
 
-    margin-bottom: 1.625rem;
-
-    letter-spacing: .03rem;
-}
 
 .nblock__content
 {
+    line-height: 1.375rem;
+
     display: flex;
 
-    height: 40vh;
+    max-height: 50vh;
     margin-top: 1.25rem;
 
     justify-content: space-between;
@@ -505,20 +789,24 @@ header
 
 .nblock__lnews_item_header_text
 {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     font-weight: 550;
-    line-height: 1.125rem;
+    line-height: 1.375rem;
 }
 
 .nblock__lnews_item_header_date
 {
     line-height: .875rem;
 
+    white-space: nowrap;
+
     color: #808080;
 }
 
-.nblock__lnews_item_text
+
+.nblock__lnews_item_text p
 {
+    font-size: .875rem;
     font-weight: 100;
     line-height: 1.25rem;
 }
@@ -542,18 +830,27 @@ header
 
     width: 48%;
 
-    align-content: center;
-    align-items: center;
+    /*align-content: center;
+    align-items: center;*/
 }
 
 .nblock__last_new_text
 {
     position: absolute;
 
-    margin-top: 7%;
+    width: 30rem;
+    margin-top: 30rem;
     margin-left: 1.5rem;
 
     color: #fff;
+}
+
+.nblock__last_new_text a
+{
+    overflow: hidden;
+    /*width: 100%;*/
+
+    height: 100%;
 }
 
 .nblock__last_new_text_title
@@ -561,11 +858,17 @@ header
     font-size: 1.125rem;
     font-weight: 600;
     line-height: 1.5rem;
+
+    width: 100%;
 }
 
 .nblock__last_new img
 {
     float: right;
+
+    max-width: none;
+    /*width: 100%;
+    height: 100%;*/
 }
 
 /*SECTION PARTNERS BLOCKS*/
@@ -589,18 +892,20 @@ header
 
 .pblock_content
 {
-    display: flex;
-
-    justify-content: space-between;
+    /*display: flex;
+    justify-content: space-between;*/
+    width: 96%;
+    margin: 0 auto;
 }
 
 .pblock__item
 {
-    display: inline-block;
+    /*display: inline-block;*/
+    display: flex;
     overflow: hidden;
 
-    width: 6.25rem;
-    height: 6.25rem;
+    width: 9.25rem;
+    height: 3.25rem;
     margin: 2px;
 
     background: #f2f2f2;
@@ -608,7 +913,9 @@ header
 
 .pblock__item img
 {
-    width: 6.25rem;
+    width: 9.25rem;
+
+    align-self: center;
 }
 
 
@@ -625,7 +932,10 @@ footer > div
 {
     display: flex;
 
+    width: 1170px;
+
     justify-content: space-between;
+    align-items: center;
 }
 
 .footer__menu li a
@@ -647,5 +957,1007 @@ footer > div
     fill: white;
 }
 
+/*--------- END MAIN PAGE BLOCK STYLES-----------*/
+
+
+/* ++++++++++PAGES STYLES +++++++++++++++++*/
+
+/* SINGLE NEW */
+
+.snew__main_info
+{
+    line-height: 1.375rem;
+
+    letter-spacing: .03rem;
+}
+.snew__main_info p
+{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.snew__main_info_img
+{
+    display: flex;
+    overflow: hidden;
+    /*width: 60%;*/
+
+    align-content: center;
+    align-items: center;
+}
+.snew__main_info_title
+{
+    font-size: 1.625rem;
+    font-weight: 500;
+    line-height: 1.75rem;
+
+    margin-top: 1.9rem;
+    margin-bottom: 1.9rem;
+}
+
+.snew__main_info_text
+{
+    font-size: .875rem;
+}
+
+.snew__other_news
+{
+    /* width: 48%;*/
+}
+.snew__other_news_title
+{
+    font-size: 1.5rem;
+
+    margin-bottom: 1.6rem;
+}
+a.snew__other_news_item
+{
+    color: #717171;
+}
+a.snew__other_news_item:hover
+{
+    color: #55c8ff;
+}
+.snew__other_news_item p
+{
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.31rem;
+
+    margin-bottom: 1.6rem;
+}
+
+/* ALL NEWS */
+.anews__news_list
+{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+}
+.anews__news_list_listitem
+{
+    display: flex;
+
+    /*justify-content: space-between;*/
+}
+.anews__news_list_listitem_img
+{
+    max-width: 50%;
+    max-height: 50%;
+}
+
+.anews__news_list_listitem_text
+{
+    margin-left: 5%;
+}
+
+.anews__news_list_listitem_text_date
+{
+    font-size: .875rem;
+    line-height: 1.375rem;
+
+    letter-spacing: .03em;
+
+    color: #808080;
+}
+.anews__news_list_listitem_text_title
+{
+    line-height: 1.375rem;
+
+    letter-spacing: .03em;
+
+    color: #000;
+}
+
+/* ABOUT FOND: CEO */
+.aboutfond_ceo
+{
+    flex-direction: column;
+}
+.af_ceo__item
+{
+    display: flex;
+
+    margin-bottom: 1rem;
+
+    justify-content: space-between;
+}
+.af_ceo__item_img
+{
+    overflow: hidden;
+
+    width: 30%;
+    height: 30%;
+}
+.af_ceo__item_img img
+{
+    width: 100%;
+}
+.af_ceo__item_info
+{
+    display: flex;
+    flex-direction: column;
+
+    width: 65%;
+
+    justify-content: space-between;
+}
+.af_ceo__item_info_table td:first-child
+{
+    font-size: .875rem;
+    font-weight: 500;
+    line-height: 1.375rem;
+
+    letter-spacing: .03em;
+
+    color: #808080;
+}
+.af_ceo__item_info_all
+{
+    display: block;
+
+    width: 50%;
+    margin-top: 3.125rem;
+    margin-bottom: .3rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+    text-align: center;
+
+    color: white;
+    border: none;
+}
+
+/* ABOUT FOND: CONTACTS */
+.aboutfond_contacts
+{
+    flex-direction: column;
+}
+
+.ab_contacts__top
+{
+    display: flex;
+
+    justify-content: space-between;
+}
+.af_contacts__info
+{
+    line-height: 1.375rem;
+
+    width: 35%;
+
+    letter-spacing: .03em;
+}
+.af_contacts__info p
+{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.af_contacts__info ul
+{
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+.af_contacts__info ul li
+{
+    padding-left: 1.5rem;
+
+    text-indent: -1.5rem;
+}
+
+.af_contacts__info ul li::before
+{
+    content: '• ';
+
+    color: #55c8ff; /* or whatever color you prefer */
+}
+.af_contacts_employer_table td:first-child
+{
+    width: 30%;
+}
+
+/* ABOUT FOND: INFOGRAFICS */
+.aboutfond_infogr
+{
+    flex-direction: column;
+}
+.aboutfond_infogr__content
+{
+    display: flex;
+
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.aboutfond_infogr__item
+{
+    display: flex;
+    flex-direction: column;
+
+    width: 48%;
+    margin-bottom: 1rem;
+
+    justify-content: space-between;
+}
+.aboutfond_infogr__item a
+{
+    overflow: hidden;
+
+    width: 100%;
+    height: 20rem;
+}
+.aboutfond_infogr__item p
+{
+    line-height: 1.375rem;
+
+    margin-top: 1rem;
+
+    letter-spacing: .03em;
+}
+.aboutfond_infogr__item img
+{
+    width: 100%;
+}
+
+/* ABOUT FOND: AIMS AND FUNCTIONS */
+.afond__content p
+{
+    line-height: 1.375rem;
+
+    margin-block-end: 16px;
+    margin-block-start: 16px;
+}
+.afond__content img
+{
+    margin-right: 1em;
+    margin-bottom: .5em;
+
+    letter-spacing: .03rem;
+}
+.afond__content ul
+{
+    margin: auto;
+    padding: auto;
+}
+.afond__content li
+{
+    line-height: 1.375rem;
+
+    margin: auto;
+    padding: auto;
+
+    letter-spacing: .03rem;
+}
+
+
+/* INFOBLOCK PAGE */
+.infoblock
+{
+    margin-top: 3.125rem;
+    margin-bottom: 3.125rem;
+}
+.infoblock p
+{
+    line-height: 1.375rem;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+}
+.infoblock__text
+{
+
+    line-height: 1.375rem;
+    width: 60%;
+}
+.file_links
+{
+    margin-top: 2rem;
+}
+.file_links a
+{
+    text-decoration: underline;
+
+    color: #55c8ff;
+}
+.file_links img
+{
+    display: inline-block;
+
+    margin-right: 1rem;
+
+    vertical-align: middle;
+}
+.tabs a {
+    color: #808080;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-right: 1rem;
+
+}
+/* ++++++++++ END PAGES STYLES +++++++++++++++++*/
+
+/*BX SLIDER STYLE REWRITE*/
+.bx-wrapper
+{
+    border: none;
+    background: #fff;
+    -webkit-box-shadow: none;
+       -moz-box-shadow: none;
+            box-shadow: none;
+}
+
 
 /* ---------MEDIA QUERIES----------- */
+
+
+
+
+
+
+
+
+
+
+
+
+/* Большие экраны ----------- */
+@media only screen  and (min-width: 1824px)
+{
+    /* стили */
+}
+
+/* Настольные компьютеры и ноутбуки ----------- */
+@media only screen  and (min-width: 1224px)
+{
+    /* стили */
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2)
+{
+    /* стили */
+}
+
+/* iPad 3**********/
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2)
+{
+    /* MAIN PAGE*/
+    body
+    {
+        font-size: 90%;
+    }
+}
+/*Notebooks and devices with 1024 max*/
+@media only screen and (min-width: 768px) and (max-width: 1024px)
+{
+    /* MAIN PAGE*/
+    body
+    {
+        font-size: 90%;
+    }
+    .fields
+    {
+        width: 100%;
+    }
+    .header__top span
+    {
+        font-size: 1rem;
+    }
+    .header__main_menu li
+    {
+        font-size: 1rem;
+    }
+    .menu li
+    {
+        padding-right: 2em;
+    }
+    .pblock_content
+    {
+        width: 94%;
+    }
+    .news_block
+    {
+        padding: 0 1rem;
+    }
+    .nblock__last_new_text
+    {
+        width: 40%;
+    }
+    .partners_block
+    {
+        padding: 0 1rem;
+    }
+    .footer__menu
+    {
+        margin-left: 1rem;
+    }
+    .footer__social
+    {
+        margin-right: 1rem;
+    }
+}
+
+/* iPads (вертикальная) ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: portrait)
+{
+    /* стили */
+}
+/* iPads (горизонтальная) ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape)
+{
+    /* стили */
+}
+
+/* iPads (вертикальная и горизонтальная) ----------- */
+@media only screen and (min-width: 768px) and (max-width: 1024px)
+{
+    /* стили */
+}
+
+/* iPads (вертикальная и горизонтальная) ----------- */
+@media only screen and (min-width: 320px) and (max-width: 768px)
+{
+    /* стили */
+    body
+    {
+        font-size: 80%;
+    }
+    .menu__icon
+    {
+        display: inline-block;
+    }
+    .two_column
+    {
+        margin-top: unset;
+        margin-bottom: 3.125rem;
+    }
+
+    /*.menu.menu_state_open .menu__links {
+            display: block;  
+        } */
+
+    /*CHANGE MENU FOR MOBILE DEVICES*/
+
+    .header__profile
+    {
+        display: none;
+    }
+    .header__logo
+    {
+        display: none;
+    }
+    .header__main
+    {
+        display: none;
+    }
+    .header__top
+    {
+        display: block;
+
+        height: 3.5rem;
+
+        background: #f2f2f2;
+    }
+    .header__main_mobile
+    {
+        display: flex;
+        flex-direction: row;
+        /*width: 100%;*/
+
+        height: 3.5rem;
+        padding-right: 1rem;
+        padding-left: 1rem;
+
+        justify-content: space-between;
+    }
+    .header__main_mobile p
+    {
+        font-size: .875rem;
+        line-height: 1rem;
+
+        display: block;
+
+        letter-spacing: .06rem;
+    }
+    section
+    {
+        margin: 0 1rem;
+    }
+    .header__main_address
+    {
+        display: none;
+    }
+    .header__main_social
+    {
+        display: none;
+    }
+    .header__main_phone
+    {
+        display: none;
+    }
+    .header__main_blindver
+    {
+        display: none;
+    }
+    .header__main_find
+    {
+        display: none;
+    }
+    .header__main_menu.mobile
+    {
+        display: block;
+        overflow: scroll;
+
+        width: 100vw;
+        height: 100%;
+        height: 100vh;
+    }
+    .orange_border
+    {
+        border: none;
+    }
+    .nav > ul
+    {
+        display: block;
+
+        width: 100%;
+        margin-left: 0;
+        padding-left: 1rem;
+
+        background: #f2f2f2;
+    }
+    .nav > ul > li
+    {
+        padding: 5px 0;
+    }
+    .nav ul ul
+    {
+        position: relative;
+
+        display: block;
+    }
+    .nav ul ul li
+    {
+        width: 100%;
+    }
+    .nav ul ul ul
+    {
+        position: relative;
+        left: 0;
+    }
+    .fa-angle-right
+    {
+        display: none;
+    }
+
+    /*______________________________*/
+
+    .slide1
+    {
+        height: 220px;
+    }
+
+    .slide2
+    {
+        height: 220px;
+    }
+
+    .slide3
+    {
+        height: 220px;
+    }
+    .action_blocks
+    {
+        flex-direction: column;
+
+        width: 96%;
+    }
+    .ablocks__blocks
+    {
+        width: 100%;
+    }
+    .action_blocks__info
+    {
+        width: 100%;
+        margin-top: 1rem;
+    }
+    .info_block
+    {
+        padding: 1rem 0;
+    }
+    .ib__item_count
+    {
+        font-size: 2.125rem;
+    }
+    .ib__item_text
+    {
+        font-size: 1rem;
+    }
+    .ib__item_type
+    {
+        font-size: 1rem;
+    }
+    .news_block
+    {
+        padding: 0;
+    }
+    .nblock__list_news
+    {
+        width: 100%;
+    }
+    .nblock__last_new
+    {
+        display: none;
+    }
+    .nblock__all_news
+    {
+        margin: 0 auto;
+    }
+    .partners_block
+    {
+        padding: 0;
+    }
+    footer > div
+    {
+        width: auto;
+    }
+    .aboutfond_infogr__content
+    {
+        flex-direction: column;
+    }
+    .aboutfond_infogr__item
+    {
+        width: 100%;
+    }
+    .aboutfond_infogr__item a
+    {
+        height: auto;
+    }
+
+    .af_ceo__item
+    {
+        flex-direction: column;
+    }
+    .af_ceo__item_img
+    {
+        width: 100%;
+        height: auto;
+    }
+    .af_ceo__item_info_table
+    {
+        margin-top: .5rem;
+    }
+    .af_ceo__item_info_all
+    {
+        width: 96vw;
+    }
+    .all_news
+    {
+        flex-direction: column;
+    }
+    #calendarHere
+    {
+        margin: 0 auto;
+        margin-bottom: .5rem;
+
+        order: 1;
+    }
+    .anews__news_list
+    {
+        width: 100%;
+
+        order: 2;
+    }
+}
+/* Smartphones (вертикальная) ----------- */
+@media only screen and (max-width: 425px)
+{
+    body
+    {
+        font-size: 100%;
+    }
+    .fa-angle-right
+    {
+        display: none;
+    }
+    .fields
+    {
+        width: 425px;
+    }
+    .slide1
+    {
+        height: 115px;
+    }
+
+    .slide2
+    {
+        height: 115px;
+    }
+
+    .slide3
+    {
+        height: 115px;
+    }
+    .action_blocks
+    {
+        flex-direction: column;
+
+        width: 96%;
+    }
+    .ablocks__blocks
+    {
+        flex-direction: column;
+    }
+    .ablocks__blocks_item
+    {
+        flex-direction: row;
+
+        width: 93%;
+        height: 4.44rem;
+        margin: .5rem 0;
+        padding-left: 1rem;
+    }
+    .ablocks__blocks_item_img
+    {
+        display: flex;
+
+        width: 4rem;
+        height: 70%;
+    }
+    .ablocks__blocks_item img
+    {
+        height: 100%;
+        margin: 0 auto;
+    }
+    .ablocks__blocks_item p
+    {
+        margin-left: 1rem;
+    }
+    .info_block div:nth-child(3),
+    .info_block  div:nth-child(4)
+    {
+        display: none;
+    }
+
+    .info_block
+    {
+        padding: 1rem 1rem;
+    }
+    .nblock__lnews_item_header_text
+    {
+        font-size: .875rem;
+        font-weight: 550;
+        line-height: 1rem;
+    }
+    .nblock__lnews_item_header_date
+    {
+        font-size: .75rem;
+    }
+    .nblock__lnews_item_text p
+    {
+        font-size: .75rem;
+    }
+    .pblock_content
+    {
+        width: 70%;
+    }
+    .pblock__item img
+    {
+        width: 100%;
+    }
+    .pblock__item
+    {
+        width: auto;
+        height: auto;
+    }
+    .footer__menu
+    {
+        display: none;
+    }
+    .af_ceo__item_info_all
+    {
+        width: 93vw;
+    }
+    .autofields {
+        width: auto;
+    }
+}
+
+
+/* Smartphones (вертикальная и горизонтальная ориентация) ----------- */
+@media only screen and (max-width : 375px)
+{
+    .fields
+    {
+        max-width: 375px;
+    }
+    .fa-angle-right
+    {
+        display: none;
+    }
+    .nblock__lnews_item_header
+    {
+        flex-direction: column;
+    }
+    .nblock__lnews_item_header a
+    {
+        flex-direction: column;
+
+        order: 2;
+    }
+    .nblock__lnews_item_header_date
+    {
+        margin-bottom: .5rem;
+
+        order: 1;
+    }
+    .pblock_content
+    {
+        /*width: 40%;
+        margin: 0;*/
+    }
+    .af_ceo__item_info_all
+    {
+        width: 92vw;
+    }
+    .anews__news_list_listitem_img
+    {
+        display: none;
+    }
+}
+
+/* Smartphones (вертикальная) ----------- */
+@media only screen and (max-width: 320px)
+{
+    /* стили */
+    .fields
+    {
+        max-width: 320px;
+    }
+    section
+    {
+        margin: 0 .5rem;
+    }
+    /*.nav ul ul ul li {
+    width: 50%;
+}*/
+    .nav ul ul li
+    {
+        width: auto;
+    }
+    .fa-angle-right
+    {
+        display: none;
+    }
+    .slide1
+    {
+        height: 87px;
+    }
+    .slide2
+    {
+        height: 87px;
+    }
+    .slide3
+    {
+        height: 87px;
+    }
+    .nblock__all_news
+    {
+        width: 100%;
+    }
+    .partners_block
+    {
+        margin-top: 9.625rem;
+    }
+    .af_ceo__item_info_all
+    {
+        width: 95vw;
+    }
+    .anews__news_list_listitem_img
+    {
+        display: none;
+    }
+}
+
+/* Smartphones (горизонтальная) ----------- */
+@media only screen and (min-width: 321px)
+{
+    /* стили */
+}
+
+
+
+
+
+
+
+/* iPhone 4 ----------- */
+@media only screen and (min-width: 320px) and (max-width: 480px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2)
+{
+    /* стили */
+}
+@media only screen and (min-width: 320px) and (max-width: 480px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2)
+{
+    /* стили */
+}
+
+/* iPhone 5 ----------- */
+@media only screen and (min-width: 320px) and (max-height: 568px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)
+{
+    /* стили */
+}
+@media only screen and (min-width: 320px) and (max-height: 568px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)
+{
+    /* стили */
+}
+
+/* iPhone 6 ----------- */
+@media only screen and (min-width: 375px) and (max-height: 667px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)
+{
+    /* стили */
+}
+@media only screen and (min-width: 375px) and (max-height: 667px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)
+{
+    /* стили */
+}
+
+/* iPhone 6+ ----------- */
+@media only screen and (min-width: 414px) and (max-height: 736px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)
+{
+    /* стили */
+}
+@media only screen and (min-width: 414px) and (max-height: 736px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)
+{
+    /* стили */
+}
+
+/* Samsung Galaxy S3 ----------- */
+@media only screen and (min-width: 320px) and (max-height: 640px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)
+{
+    /* стили */
+}
+@media only screen and (min-width: 320px) and (max-height: 640px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)
+{
+    /* стили */
+}
+
+/* Samsung Galaxy S4 ----------- */
+@media only screen and (min-width: 320px) and (max-height: 640px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3)
+{
+    /* стили */
+}
+@media only screen and (min-width: 320px) and (max-height: 640px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3)
+{
+    /* стили */
+}
+
+/* Samsung Galaxy S5 ----------- */
+@media only screen and (min-width: 360px) and (max-height: 640px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 3)
+{
+    /* стили */
+}
+@media only screen and (min-width: 360px) and (max-height: 640px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 3)
+{
+    /* стили */
+}

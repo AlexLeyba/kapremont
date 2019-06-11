@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load staticfiles menu %}
+{% block content %}
+<section class="infoblock">
+    <div>
+        {% for names in name %}
+            <p class="title"> {{ names.name }}</p>
+        {% endfor %}
+    </div>
+    <div class="tabs">{% for choice in choices %}
+        {% if choice.name %}
+        <a href="{{ choice.get_absolute_url }}">{{ choice.name }}</a>
+        {% endif %}
+    {% endfor %}
+    </div>
+    <div>
+    {% if choices.last.name %}
+        {% for vknadkas in vkladka %}
+                {% for f in vknadkas.get_files %}
+            {% if f %}
+                <div class="file_links"><img src="{% static 'imgs/ico_doc.svg' %}" alt="" ><a href="{{ f.file.url }}">{{ f.name }}</a></div>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    {% else %}
+        {% for vknadkas in choices %}
+                {% for f in vknadkas.get_files %}
+            {% if f %}
+                <div class="file_links"><img src="{% static 'imgs/ico_doc.svg' %}" alt="" ><a href="{{ f.file.url }}">{{ f.name }}</a></div>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+    {% endif %}
+    </div>
+    </section>
+{% endblock %}

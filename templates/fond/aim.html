@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for i in aim %}
+<section class=".aboutfond_aims two_column">
+    <div class="afond__content">
+        {{ i.name | safe }}
+    </div>
+</section>
+{% endfor %}
+{% endblock %}

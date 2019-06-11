@@ -1,9 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div>
-        <p>совпадений найдено: {{ founded.count }}</p>
-        {% for found in founded %}
-            {{ found.title }}
+    <h1>Поиск</h1>
+    {% if found %}
+        {% for founded in found %}
+            {% for f in founded %}
+                <div>
+                    <a href="{{ f.get_absolute_url }}">
+                        <h2>{{ f.name }}</h2>
+                    </a>
+                    {{ f.text|truncatewords:50 | safe }}
+                    <p><a class="btn btn-default btn-sm" href="{{ f.get_absolute_url }}">Читать далее...</a></p>
+                </div>
+            {% endfor %}
         {% endfor %}
-    </div>
+    {% else %}
+        <p>Не найдено публикаций по вашему запросу<br>Попробуйте повторить запрос с другой формулировкой</p>
+    {% endif %}
+
 {% endblock %}
