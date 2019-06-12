@@ -15,8 +15,12 @@ class ArticleManager(models.Manager):
     def search(self, query=None):
         qs = self.get_queryset()
         if query:
-            or_lookup = (Q(name__icontains=query) | Q(text__icontains=query))
-            qs = qs.filter(or_lookup)
+            try:
+                or_lookup = (Q(name__icontains=query) | Q(text__icontains=query))
+                qs = qs.filter(or_lookup)
+            except:
+                or_lookup = Q(name__icontains=query)
+                qs = qs.filter(or_lookup)
         return qs
 
 
@@ -43,6 +47,7 @@ class CategoryFond(MPTTModel):
 
 class Vcontrol(MPTTModel):
     """Внутренний контроль"""
+    objects = ArticleManager()
     name = models.CharField('Заголовок', max_length=300)
     text = RichTextUploadingField('Текст', blank=True, null=True, config_name='default',
                                   external_plugin_resources=[
@@ -69,6 +74,7 @@ class Vcontrol(MPTTModel):
 
 
 class FilesModel(models.Model):
+    objects = ArticleManager()
     name = models.CharField('Название файла', max_length=300)
     file = models.FileField('Файл', upload_to="files/", max_length=100, null=True, blank=True)
     control = models.ForeignKey(Vcontrol, on_delete=models.CASCADE, null=True, blank=True)

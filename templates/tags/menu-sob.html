@@ -4,7 +4,7 @@
         <a href="{{ node.get_absolute_url }}">{{ node.name }}</a>
         {% if not node.is_leaf_node %}
             <ul class="children">
-                {% if node.level == 1 %}
+                {% if node.name == 'usi' %}
                     <li><a href="#">test</a></li>
                 {% endif %}
                 {{ children }}

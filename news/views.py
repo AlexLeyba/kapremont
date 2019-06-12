@@ -44,6 +44,8 @@ class SearchView(View):
             query_sets = []
             query_sets.append(CeoFond.objects.search(query=q))
             query_sets.append(News.objects.search(query=q))
+            query_sets.append(Vcontrol.objects.search(query=q))
+            query_sets.append(FilesModel.objects.search(query=q))
             try:
                 query_sets.append(Aim.objects.search(query=q))
             except:

@@ -7,6 +7,11 @@ class FilesInstanceInlineSob(admin.TabularInline):
     model = FilesSobModel
 
 
+class SobFilesInstanceInlineSob(admin.TabularInline):
+    model = FilesSobModel
+    exclude = ("rec",)
+
+
 @admin.register(Choices)
 class ChoicesInstanceInlineSob(admin.ModelAdmin):
     inlines = [FilesInstanceInlineSob]
@@ -15,7 +20,7 @@ class ChoicesInstanceInlineSob(admin.ModelAdmin):
 @admin.register(Sobstvenikam)
 class SoblAdmin(MPTTModelAdmin):
     list_display = ('name', 'text',)
-    inlines = [FilesInstanceInlineSob]
+    inlines = [SobFilesInstanceInlineSob]
 
 
 @admin.register(RecommendationsSob)
