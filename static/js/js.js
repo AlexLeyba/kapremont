@@ -69,6 +69,7 @@ $(document).ready(function () {
         clear: "Очистить"
     };
     myCalendar = new dhtmlXCalendarObject("calendarHere");
+    myCalendar.hideTime();
     myCalendar.attachEvent("onClick", function (d) {
         var c=myCalendar.getFormatedDate("%Y-%m-%d");
         $("#calendar").val(c);
@@ -82,10 +83,29 @@ $(document).ready(function () {
         //     }
         // });
     });
+    var ms = Date.parse('11 июня 2019');
+    
     myCalendar.setDate(new Date());
     myCalendar.show();
     myCalendar.loadUserLanguage("ru");
 
+    //animate numbers
+var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(' ');
+    $('.ib__item_count').each(function(i,elem) {
+         
+        $(this).animateNumber(
+      {
+        number: $(this).html(),
+        numberStep: comma_separator_number_step
+      },
+        {
+    easing: 'swing',
+    duration: 3000
+  }
+    );
+    });
+    
+   
 
     $('.header__logo').click(function (e) {
         window.location.href = "/";
@@ -93,6 +113,10 @@ $(document).ready(function () {
 
     $('.header__profile').click(function (e) {
         window.open("http://portal.fkr48.ru", "_blank");
+    })
+    $('.slide1').click(function (e) {
+        window.open("http://portal.fkr48.ru", "_blank");
+        alert ('1');
     })
 
     $('#find').click(function (e) {

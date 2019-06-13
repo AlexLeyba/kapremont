@@ -1,9 +1,22 @@
-from django.db import models
-from ckeditor.fields import RichTextField
-from ckeditor_uploader.fields import RichTextUploadingField
-from django.db.models import Q
-from fond.models import ArticleManager
+from fond.models import *
 from django.urls import reverse
+
+
+class ArticleManager(models.Manager):
+    """ Методо для реализации поиска по всему сайту"""
+
+    use_for_related_fields = True
+
+    def search(self, query=None):
+        qs = self.get_queryset()
+        if query:
+            try:
+                or_lookup = (Q(name__icontains=query) | Q(text__icontains=query))
+                qs = qs.filter(or_lookup)
+            except:
+                or_lookup = Q(name__icontains=query)
+                qs = qs.filter(or_lookup)
+        return qs
 
 
 class InfoCoin(models.Model):
@@ -18,8 +31,8 @@ class InfoCoin(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'общая информация'
-        verbose_name_plural = 'общая информация'
+        verbose_name = 'Всего собрано средств'
+        verbose_name_plural = 'Всего собрано средств'
 
 
 class News(models.Model):
@@ -54,5 +67,5 @@ class Partners(models.Model):
     url = models.CharField('Ссылка', max_length=1000)
 
     class Meta:
-        verbose_name = 'Партнер'
-        verbose_name_plural = 'Партнеры'
+        verbose_name = 'Наши партнеры'
+        verbose_name_plural = 'Наши партнеры'

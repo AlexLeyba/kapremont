@@ -4,7 +4,6 @@ from news.models import *
 from django.views.generic import View, ListView
 from django.db.models import Q
 
-# FilesModel.objects.filter(control__choeses="pupkin")
 # Раздел меню О фонде
 
 class VcontrolView(View):
@@ -24,29 +23,7 @@ class InfographView(View):
         context = {
             'info': info
         }
-        # return render(request, 'fond/infografics.html', context)
-        return render(request, 'fond/test_o.html', context)
-
-
-class SovetView(View):
-    """Попечительский совет"""
-
-    def get(self, request):
-        return render(request, 'fond/sovet.html')
-
-
-class PravlenieView(View):
-    """Правление"""
-
-    def get(self, request):
-        return render(request, 'fond/pravlenie.html')
-
-
-class StructureView(View):
-    """Структура"""
-
-    def get(self, request):
-        return render(request, 'fond/structure.html')
+        return render(request, 'fond/infografics.html', context)
 
 
 class CeoView(View):

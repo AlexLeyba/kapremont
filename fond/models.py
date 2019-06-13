@@ -10,6 +10,8 @@ from sobstvenikam.models import Sobstvenikam
 
 
 class ArticleManager(models.Manager):
+    """ Методо для реализации поиска по всему сайту"""
+
     use_for_related_fields = True
 
     def search(self, query=None):
@@ -24,29 +26,30 @@ class ArticleManager(models.Manager):
         return qs
 
 
-class CategoryFond(MPTTModel):
-    """Пункт меню О фонде"""
-
-    name = models.CharField("Название категории", max_length=100)
-    parent = TreeForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)
-    slug = models.SlugField('url', null=True, blank=True)  # при деплое сделать slug обязательным полем
-
-    def __str__(self):
-        return self.name
-
-    def get_absolute_url(self):
-        return reverse('o_fonde', kwargs={'slug': self.slug})
-
-    class Meta:
-        verbose_name = 'Пункт меню'
-        verbose_name_plural = 'Пункты меню'
-
-    class MPTTMeta:
-        order_insertion_by = ['name']
+# class CategoryFond(MPTTModel):
+#     """Пункт меню О фонде"""
+#
+#     name = models.CharField("Название категории", max_length=100)
+#     parent = TreeForeignKey("self", on_delete=models.CASCADE, null=True, blank=True)
+#     slug = models.SlugField('url', null=True, blank=True)  # при деплое сделать slug обязательным полем
+#
+#     def __str__(self):
+#         return self.name
+#
+#     def get_absolute_url(self):
+#         return reverse('o_fonde', kwargs={'slug': self.slug})
+#
+#     class Meta:
+#         verbose_name = 'Пункт меню'
+#         verbose_name_plural = 'Пункты меню'
+#
+#     class MPTTMeta:
+#         order_insertion_by = ['name']
 
 
 class Vcontrol(MPTTModel):
     """Внутренний контроль"""
+
     objects = ArticleManager()
     name = models.CharField('Заголовок', max_length=300)
     text = RichTextUploadingField('Текст', blank=True, null=True, config_name='default',
@@ -66,8 +69,8 @@ class Vcontrol(MPTTModel):
         return FilesModel.objects.filter(control_id=self.id)
 
     class Meta:
-        verbose_name = 'Внутренний контроль'
-        verbose_name_plural = 'Внутренний контроль'
+        verbose_name = 'Доп. пункт меню О фонде'
+        verbose_name_plural = 'Доп. пункты меню О фонде'
 
     class MPTTMeta:
         order_insertion_by = ['name']
@@ -97,7 +100,7 @@ class CeoFond(models.Model):
                                   external_plugin_resources=[
                                       ('youtube', '/static/ckeditor_plugins/youtube/youtube_2.1.13/youtube/',
                                        'plugin.js',)])
-    category = models.ForeignKey(CategoryFond, on_delete=models.CASCADE)
+    # category = models.ForeignKey(CategoryFond, on_delete=models.CASCADE)
     slug = models.SlugField('url', null=True, blank=True)  # при деплое сделать slug обязательным полем
 
     def __str__(self):
@@ -116,12 +119,12 @@ class CeoFond(models.Model):
 
 class Aim(models.Model):
     """Цели и функции"""
-    objects = ArticleManager()
+
     name = RichTextUploadingField("Цели и функции", blank=True, null=True, config_name='default',
                                   external_plugin_resources=[
                                       ('youtube', '/static/ckeditor_plugins/youtube/youtube_2.1.13/youtube/',
                                        'plugin.js',)])
-    category = models.ForeignKey(CategoryFond, on_delete=models.CASCADE)
+    # category = models.ForeignKey(CategoryFond, on_delete=models.CASCADE)
     slug = models.SlugField('url', null=True, blank=True)  # при деплое сделать slug обязательным полем
 
     def get_absolute_url(self):

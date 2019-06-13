@@ -9,8 +9,5 @@ urlpatterns = [
                   path('aim/', AimView.as_view(), name='aim'),
                   path('contacts/', ContactView.as_view(), name='contacts'),
                   path('infograph/', InfographView.as_view(), name='infograph'),
-                  path('sovet/', SovetView.as_view(), name='sovet'),
-                  path('pravlenie/', PravlenieView.as_view(), name='pravlenie'),
-                  path('structure/', StructureView.as_view(), name='structure'),
                   path('<slug:slug>/', VcontrolView.as_view(), name='control')
               ]

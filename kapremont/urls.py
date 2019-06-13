@@ -11,5 +11,6 @@ urlpatterns = [
                   path('sobstvenikam/', include('sobstvenikam.urls')),
                   path('ckeditor/', include('ckeditor_uploader.urls')),
                   path('reports/', include('reports.urls')),
+                  path('bargaining/', include('bargaining.urls')),
                   path('', include('news.urls')),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

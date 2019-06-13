@@ -1,11 +1,26 @@
-from django.db import models
-from ckeditor_uploader.fields import RichTextUploadingField
-from django.urls import reverse
-from mptt.models import MPTTModel, TreeForeignKey
+from mptt.models import MPTTModel
 from fond.models import *
 
 
+class ArticleManager(models.Manager):
+    """ Методо для реализации поиска по всему сайту"""
+
+    use_for_related_fields = True
+
+    def search(self, query=None):
+        qs = self.get_queryset()
+        if query:
+            try:
+                or_lookup = (Q(name__icontains=query) | Q(text__icontains=query))
+                qs = qs.filter(or_lookup)
+            except:
+                or_lookup = Q(name__icontains=query)
+                qs = qs.filter(or_lookup)
+        return qs
+
+
 class Sobstvenikam(MPTTModel):
+    objects = ArticleManager()
     name = models.CharField('Заголовок', max_length=300)
     text = RichTextUploadingField('Тело', blank=True, null=True, config_name='default',
                                   external_plugin_resources=[
@@ -15,8 +30,8 @@ class Sobstvenikam(MPTTModel):
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
-        verbose_name = 'Пункт меню'
-        verbose_name_plural = 'Пункты меню'
+        verbose_name = 'Пункт меню Собственникам'
+        verbose_name_plural = 'Пункты меню Собственникам'
 
     class MPTTMeta:
         order_insertion_by = ['name']
@@ -32,14 +47,15 @@ class Sobstvenikam(MPTTModel):
 
 
 class RecommendationsSob(models.Model):
+    objects = ArticleManager()
     name = models.CharField('Заголовок', max_length=300)
 
     def __str__(self):
         return self.name
 
     class Meta:
-        verbose_name = 'Рекомендации собственникам'
-        verbose_name_plural = 'Рекомендации собственникам'
+        verbose_name = 'Рекомендации Собственникам'
+        verbose_name_plural = 'Рекомендации Собственникам'
 
 
 class Choices(models.Model):
@@ -57,11 +73,12 @@ class Choices(models.Model):
         return reverse('one_rec', kwargs={"slug": self.slug})
 
     class Meta:
-        verbose_name = 'Вкладка'
-        verbose_name_plural = 'Вкладки'
+        verbose_name = 'Вкладка в рекомендациях'
+        verbose_name_plural = 'Вкладки в рекомендациях'
 
 
 class FilesSobModel(models.Model):
+    objects = ArticleManager()
     name = models.CharField('Название файла', max_length=300)
     file = models.FileField('Файл', upload_to="files/", max_length=100, null=True, blank=True)
     sobstvenikam = models.ForeignKey(Sobstvenikam, on_delete=models.CASCADE, null=True, blank=True)

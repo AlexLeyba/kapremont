@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'sobstvenikam',
     'reports',
+    'bargaining',
 ]
 
 MIDDLEWARE = [

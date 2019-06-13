@@ -3,7 +3,7 @@
     <section class="all_news two_column">
         <div class="anews__news_list left_col">
             {% for new in calendar %}
-                <input type="hidden" name="dt" value="{{ new.date }}">
+                <input type="hidden" name="dt" value="{{ new.date}}">
                 <div class="anews__news_list_listitem">
                     {% if new.picture %}
                         <div class="anews__news_list_listitem_img">

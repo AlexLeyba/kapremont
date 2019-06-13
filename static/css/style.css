@@ -757,7 +757,7 @@ header
 
     display: flex;
 
-    max-height: 50vh;
+    max-height: 30rem;
     margin-top: 1.25rem;
 
     justify-content: space-between;
@@ -789,8 +789,8 @@ header
 
 .nblock__lnews_item_header_text
 {
-    font-size: 1.125rem;
-    font-weight: 550;
+    font-size: 1.225rem;
+    font-weight: 600;
     line-height: 1.375rem;
 }
 
@@ -825,6 +825,8 @@ header
 
 .nblock__last_new
 {
+    position: relative;
+
     display: flex;
     overflow: hidden;
 
@@ -837,9 +839,10 @@ header
 .nblock__last_new_text
 {
     position: absolute;
+    /*margin-top: 30vh;;*/
+    bottom: 2rem;
 
     width: 30rem;
-    margin-top: 30rem;
     margin-left: 1.5rem;
 
     color: #fff;
@@ -937,6 +940,9 @@ footer > div
     justify-content: space-between;
     align-items: center;
 }
+.footer__menu {
+    display: none;
+}
 
 .footer__menu li a
 {
@@ -950,6 +956,7 @@ footer > div
     width: 12.8rem;
 
     justify-content: space-between;
+    margin: 0 auto;
 }
 
 .footer__social svg
@@ -1262,13 +1269,14 @@ a.snew__other_news_item:hover
 .infoblock p
 {
     line-height: 1.375rem;
+
     margin-block-start: 1em;
     margin-block-end: 1em;
 }
 .infoblock__text
 {
-
     line-height: 1.375rem;
+
     width: 60%;
 }
 .file_links
@@ -1289,12 +1297,14 @@ a.snew__other_news_item:hover
 
     vertical-align: middle;
 }
-.tabs a {
-    color: #808080;
+.tabs a
+{
     font-size: 1.5rem;
     font-weight: 600;
+
     margin-right: 1rem;
 
+    color: #808080;
 }
 /* ++++++++++ END PAGES STYLES +++++++++++++++++*/
 
@@ -1372,6 +1382,14 @@ a.snew__other_news_item:hover
     {
         padding-right: 2em;
     }
+    .ablocks__blocks
+    {
+        padding: 0 1rem;
+    }
+    .action_blocks__info
+    {
+        padding: 0 .5rem;
+    }
     .pblock_content
     {
         width: 94%;
@@ -1416,7 +1434,7 @@ a.snew__other_news_item:hover
 }
 
 /* iPads (вертикальная и горизонтальная) ----------- */
-@media only screen and (min-width: 320px) and (max-width: 768px)
+@media only screen and (min-width: 320px) and (max-width: 823px)
 {
     /* стили */
     body
@@ -1670,6 +1688,63 @@ a.snew__other_news_item:hover
         order: 2;
     }
 }
+@media only screen and (max-width: 736px)
+{
+    .fields
+    {
+        max-width: 736px;
+    }
+    .content {
+        width: 736px;
+    }
+    .footer__menu li
+    {
+        padding-right: 1.5rem;
+    }
+    .autofields {
+        /*margin-left: .5rem;
+        margin-right: .5rem;*/
+    }
+    .footer__menu {
+        margin-left: .5rem;
+    }
+    .footer__social  {
+        margin-right: .5rem;
+    }
+
+}
+@media only screen and (max-width: 667px)
+{
+    .fields
+    {
+        max-width: 667px;
+    }
+    .content {
+        width: 667px;
+    }
+}
+@media only screen and (max-width: 640px)
+{
+    .fields
+    {
+        max-width: 640px;
+    }
+}
+@media only screen and (max-width: 568px)
+{
+    .fields
+    {
+        max-width: 568px;
+    }
+    .footer__menu
+    {
+        display: none;
+    }
+    .content {
+        width: 568px;
+    }
+
+}
 /* Smartphones (вертикальная) ----------- */
 @media only screen and (max-width: 425px)
 {
@@ -1779,11 +1854,38 @@ a.snew__other_news_item:hover
     {
         width: 93vw;
     }
-    .autofields {
+    .autofields
+    {
         width: auto;
+    }
+    .single_new
+    {
+        flex-direction: column;
+    }
+    .snew__main_info
+    {
+        width: 100%;
+    }
+    .snew__other_news
+    {
+        width: 100%;
     }
 }
 
+@media only screen and (max-width: 411px)
+{
+    .fields
+    {
+        max-width: 411px;
+    }
+}
+@media only screen and (max-width: 414px)
+{
+    .fields
+    {
+        max-width: 414px;
+    }
+}
 
 /* Smartphones (вертикальная и горизонтальная ориентация) ----------- */
 @media only screen and (max-width : 375px)
@@ -1826,6 +1928,15 @@ a.snew__other_news_item:hover
         display: none;
     }
 }
+
+@media only screen and (max-width: 360px)
+{
+    .fields
+    {
+        max-width: 360px;
+    }
+}
+
 
 /* Smartphones (вертикальная) ----------- */
 @media only screen and (max-width: 320px)

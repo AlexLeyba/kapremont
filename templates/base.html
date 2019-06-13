@@ -10,9 +10,11 @@
     <meta name="description" content="">
     <script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/js.js' %}"></script>
+    <script src="{% static 'js/jquery.animateNumber.min.js' %}"></script>
     <script src="https://use.fontawesome.com/d5f3d1050f.js"></script>
     <script src="{% static 'bxslider/js/jquery.bxslider.js' %}"></script>
     <script src="{% static 'dhtmlxCalendar/codebase/dhtmlx.js' %}"></script>
+
     <script type="text/javascript" src="{% static 'slick/slick.min.js' %}"></script>
     <link rel="stylesheet" href="{% static 'bxslider/css/jquery.bxslider.css' %}">
     <link rel="stylesheet" href="{% static 'dhtmlxCalendar/codebase/dhtmlx.css' %}">
@@ -87,10 +89,6 @@
                                     <li><a href="{% url 'ceo' %}">Руководство фонда</a>
                                     </li>
                                     {% fond_menu %}
-                                    <li><a href="#">Взаимодействие с общественными организациями</a></li>
-                                    <li><a href="{% url 'structure' %}">Структура фонда</a></li>
-                                    <li><a href="{% url 'pravlenie' %}">Правление</a></li>
-                                    <li><a href="{% url 'pravlenie' %}">Попечительский совет</a></li>
                                     <li><a href="{% url 'infograph' %}">Инфографика</a></li>
                                     <li><a href="{% url 'contacts' %}">Контакты</a></li>
                                 </ul>
@@ -100,12 +98,12 @@
                                 <ul class="subitem">
                                     <li><a href="#">Витрина закупок </a>
                                         <ul>
-                                            <li><a href="#">Сбербанк реестр процедур</a></li>
-                                            <li><a href="#">Сбербанк реестр договоров</a></li>
-                                            <li><a href="#">РТС</a></li>
+                                            <li><a href="{% url 'procedures' %}">Сбербанк реестр процедур</a></li>
+                                            <li><a href="{% url 'contracts' %}">Сбербанк реестр договоров</a></li>
+                                            <li><a href="{% url 'purchases' %}">РТС</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="#">Единый реестр подрядных организаций </a>
+                                    <li><a href="{% url 'registry' %}">Единый реестр подрядных организаций </a>
                                     </li>
                                     <li><a href="#">Архив конкурсных процедур до 12.05.15</a></li>
                                     <li><a href="#">Архив конкурсных процедур после 12.05.15</a></li>
@@ -115,7 +113,8 @@
                                 <ul class="subitem">
                                     <li><a href="{% url 'report' report="godovoi" %}">Годовой отчет</a>
                                     </li>
-                                    <li><a href="{% url 'report' report="info" %}">Информация о контрольных органах и мероприятиях</a>
+                                    <li><a href="{% url 'report' report="info" %}">Информация о контрольных органах и
+                                        мероприятиях</a>
                                     </li>
                                 </ul>
                             </li>

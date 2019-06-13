@@ -2,6 +2,9 @@ from itertools import chain
 from django.shortcuts import render
 from fond.models import *
 from news.models import *
+from bargaining.models import *
+from reports.models import *
+from sobstvenikam.models import *
 from django.views.generic import View, ListView
 from django.db.models import Q
 from fond.models import ArticleManager
@@ -46,10 +49,17 @@ class SearchView(View):
             query_sets.append(News.objects.search(query=q))
             query_sets.append(Vcontrol.objects.search(query=q))
             query_sets.append(FilesModel.objects.search(query=q))
-            try:
-                query_sets.append(Aim.objects.search(query=q))
-            except:
-                pass
+
+            query_sets.append(Bargaining.objects.search(query=q))
+            query_sets.append(FilesBarModel.objects.search(query=q))
+
+            query_sets.append(ReportModel.objects.search(query=q))
+            query_sets.append(FilesReports.objects.search(query=q))
+
+            query_sets.append(Sobstvenikam.objects.search(query=q))
+            query_sets.append(RecommendationsSob.objects.search(query=q))
+            query_sets.append(FilesSobModel.objects.search(query=q))
+
             final_set = list(chain(*query_sets))
             final_set.sort(key=lambda x: x.name, reverse=True)
             context = {

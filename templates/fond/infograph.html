@@ -1,8 +1,0 @@
-{% extends 'base.html' %}
-{% block content %}
-    {% for i in info %}
-        <p>{{ i.name }}</p>
-        <p><a href="{{ i.file.url }}"><img
-                src="{{ MEDIA_URL }}{{ i.image.url }}" width="450" height="266" alt=""></a></p>
-    {% endfor %}
-{% endblock %}

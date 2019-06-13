@@ -33,5 +33,5 @@ class InfographAdmn(admin.ModelAdmin):
 
 admin.site.register(Infograph, InfographAdmn)
 admin.site.register(Aim, AimAdmin)
-admin.site.register(CategoryFond, CategoryAdmin)
+# admin.site.register(CategoryFond, CategoryAdmin)
 admin.site.register(CeoFond, CeoAdmin)
